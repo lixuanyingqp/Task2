@@ -106,10 +106,6 @@ int main(void)
     printf("更改PWM频率\r\n");
     printf("请输入PWM频率，如50Hz\r\n");
     OLED_Init();
-    //OLED_ShowStr(0,0,"OLED-TEXT",2);
-    //unsigned char str[]="\0";
-    //printf("%d\n",sizeof(str));
-    //printf("%d %d\n",str[0],str[1]);
     OLED_ShowChinese(0,16,0);
     OLED_ShowChinese(16,16,1);
     OLED_ShowChinese(32,16,2);
