@@ -19,9 +19,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
+#include "OLED_IIC_Config.h"
+#include "OLED_Function.h"
+#include "OLED_Front.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -94,13 +98,22 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   MX_TIM2_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
     __HAL_UART_ENABLE_IT(&huart2,UART_IT_IDLE);
     HAL_UART_Receive_DMA(&huart2,RxBuffer,LENGTH);
     printf("更改PWM频率\r\n");
     printf("请输入PWM频率，如50Hz\r\n");
-    
+    OLED_Init();
+    //OLED_ShowStr(0,0,"OLED-TEXT",2);
+    //unsigned char str[]="\0";
+    //printf("%d\n",sizeof(str));
+    //printf("%d %d\n",str[0],str[1]);
+    OLED_ShowChinese(0,16,0);
+    OLED_ShowChinese(16,16,1);
+    OLED_ShowChinese(32,16,2);
+    OLED_HorizontalShift(0,3,RIGHT);
   /* USER CODE END 2 */
 
   /* Infinite loop */
